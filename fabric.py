@@ -3,7 +3,7 @@
 import sys
 import os
 import shutil
-from fabric.api import env, local
+from fabric.api import task, env, local, run
 from ftpsync.targets import FsTarget
 from ftpsync.ftp_target import FtpTarget
 from ftpsync.synchronizers import BiDirSynchronizer
@@ -51,6 +51,7 @@ def synchronize(user, password):
         print e
 
 
+@task
 def deploy(env="test", user, password):
     print "deploying..."
     make_temp()
