@@ -30,9 +30,9 @@ def make_temp():
     return False
 
 
-def make_config_prod():
+def make_config(env):
     print "Making prod config file..."
-    shutil.copy2('{0}/protected/config/main.php-prod'.format(SOURCE_FOLDER), '{0}/protected/config/main.php'.format(DEPLOY_FOLDER))
+    shutil.copy2('{0}/protected/config/main.php-{1}'.format(SOURCE_FOLDER, env), '{0}/protected/config/main.php'.format(DEPLOY_FOLDER))
     return False
 
 
@@ -54,5 +54,5 @@ def synchronize(user, password):
 def deploy(env="test", user, password):
     print "deploying..."
     make_temp()
-    make_config_prod()
+    make_config(env)
     synchronize(user, password)
